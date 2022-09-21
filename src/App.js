@@ -23,17 +23,17 @@ function App() {
   return (
     <>
       <div className="main-div">
+        {/* /////--------Card Filtering Component---------///////////////////// */}
         <div className="aside1 col-5">
-          <div className="form-groups">
-            <label htmlFor="formGroupExampleInput">Example label</label>
+          <div className="form-groups  box">
             <input
               type="text"
               className="form-control"
               id="formGroupExampleInput"
-              placeholder="Example input placeholder"
+              placeholder="Enter Name Or Title for Search"
             />
           </div>
-          <div className="dropdown mt-3">
+          <div className="dropdown mt-3 box">
             <button
               className="btn btn-light dropdown-toggle"
               type="button"
@@ -41,34 +41,37 @@ function App() {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              Dropdown button
+              Search By Dropdown
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li>
                 <a className="dropdown-item" href="#">
-                  Action
+                  Search by Date
                 </a>
               </li>
               <li>
                 <a className="dropdown-item" href="#">
-                  Another action
+                  Search by Name
                 </a>
               </li>
               <li>
                 <a className="dropdown-item" href="#">
-                  Something else here
+                  Search by Title
                 </a>
               </li>
             </ul>
           </div>
-          <div className="p-2 text-end ">
+          <div className="p-2 box">
             <button type="button" className="btn btn-primary">
               Filter
             </button>
           </div>
+          {/* ///--------Card Component--------////// */}
           <div
-            className="card text-dark bg-light  mb-3"
-            style={{ maxWidth: "18rem" }}
+            className="card text-white bg-secondary mb-3"
+            style={{
+              maxWidth: "18rem",
+            }}
           >
             <div className="card-header">Header</div>
             <div className="card-body">
@@ -80,7 +83,7 @@ function App() {
             </div>
           </div>
         </div>
-        {/* ----------/////////  new Component ----------///// */}
+        {/* ----------/////////  notes Adding Component ----------///// */}
         <div className="aside2  col-7">
           <div className="d-flex flex-row-reverse m-3">
             <div className="p-2">
@@ -109,31 +112,29 @@ function App() {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="formGroupExampleInput">Example label</label>
               <input
                 type="text"
                 className="form-control"
                 id="formGroupExampleInput"
-                placeholder="Example input placeholder"
+                placeholder="Enter Name"
               />
             </div>
             <div className="form-group">
-              <label htmlFor="formGroupExampleInput2">Another label</label>
               <input
                 type="text"
                 className="form-control"
                 id="formGroupExampleInput2"
-                placeholder="Another input placeholder"
+                placeholder="Enter Title"
               />
             </div>
             <div className="form-outline mb-4 form-group">
-              <label className="form-label" htmlFor="form4Example3">
+              {/* <label className="form-label fw-bold" htmlFor="form4Example3">
                 Message
-              </label>
+              </label> */}
               <textarea
                 className="form-control"
                 id="form4Example3"
-                rows="6"
+                rows="8"
                 placeholder="Enter Something Here!"
               ></textarea>
             </div>
