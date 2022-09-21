@@ -88,7 +88,7 @@ function App() {
           <div className="d-flex flex-row-reverse m-3">
             <div className="p-2">
               <button type="button" className="btn btn-primary">
-                New
+                Delete
               </button>
             </div>
             <div className="p-2">
@@ -98,7 +98,7 @@ function App() {
             </div>
             <div className="p-2">
               <button type="button" className="btn btn-primary">
-                Delete
+                New
               </button>
             </div>
           </div>
