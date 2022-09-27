@@ -1,8 +1,13 @@
 import React from "react";
 import "../App.css";
 import { Button } from "./Button";
-
+import { useSelector } from "react-redux";
+/**
+ * 
+ * @returns JSX
+ */
 export const AsideContent = () => {
+  const list = useSelector((state) => state.reducerNew.list);
   return (
     <>
       {/* /////--------Card Filtering Component---------///////////////////// */}
@@ -44,6 +49,7 @@ export const AsideContent = () => {
           </ul>
         </div>
         <Button buttonName="Filter" />
+
         {/* ///--------Card Component--------////// */}
         <div
           className="card text-white bg-secondary mb-3"
@@ -51,7 +57,11 @@ export const AsideContent = () => {
             maxWidth: "18rem",
           }}
         >
-          <div className="card-header">Header</div>
+          <div className="card-header">
+            {list.map((elem) => {
+              return <h5>{elem.data}</h5>;
+            })}
+          </div>
           <div className="card-body">
             <h5 className="card-title">Dark card title</h5>
             <p className="card-text">

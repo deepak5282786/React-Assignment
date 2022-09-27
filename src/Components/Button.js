@@ -1,5 +1,9 @@
 import React from "react";
-
+/**
+ * 
+ * @param  props {button propertise}
+ * @returns customize button element
+ */
 export const Button = (props) => {
   return (
     <>
