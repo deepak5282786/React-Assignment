@@ -33,3 +33,13 @@ body {
 .form-groups {
   margin-top: 65px;
 }
+.scroll {
+  margin: 4px, 4px;
+  padding: 4px;
+  /* background-color: green; */
+  width: 500px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: justify;
+}

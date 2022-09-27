@@ -36,7 +36,7 @@ export const MainContent = () => {
 
           <Button
             btnName={CommonStrings.new}
-            clickSave={() => dispatch(saveNew(inputTitle), setInputTitle(""))}
+            // clickSave={() => dispatch(saveNew(inputTitle), setInputTitle(""))}
           />
         </div>
         <form className="formic">
