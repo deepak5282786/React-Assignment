@@ -2,10 +2,6 @@ import React from "react";
 import "../App.css";
 import { Button } from "./Button";
 import { useSelector } from "react-redux";
-/**
- * 
- * @returns JSX
- */
 export const AsideContent = () => {
   const list = useSelector((state) => state.reducerNew.list);
   return (
@@ -48,7 +44,7 @@ export const AsideContent = () => {
             </li>
           </ul>
         </div>
-        <Button buttonName="Filter" />
+        <Button btnName="Filter" />
 
         {/* ///--------Card Component--------////// */}
         <div
@@ -57,18 +53,19 @@ export const AsideContent = () => {
             maxWidth: "18rem",
           }}
         >
-          <div className="card-header">
-            {list.map((elem) => {
-              return <h5>{elem.data}</h5>;
-            })}
-          </div>
-          <div className="card-body">
-            <h5 className="card-title">Dark card title</h5>
-            <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-          </div>
+          {list.map((elem) => {
+            return (
+              <>
+                <div className="card-header">
+                  <h5>Name: {elem.data.name}</h5>
+                </div>
+                <div className="card-body">
+                  <h5 className="card-title">Title :{elem.data.title}</h5>
+                  <p className="card-text">{elem.data.describe}</p>
+                </div>
+              </>
+            );
+          })}
         </div>
       </div>
     </>

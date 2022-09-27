@@ -1,20 +1,13 @@
-import { ActionTypes } from "../Components/actionTypes";
-
 export const addNew = () => {
   return {
-    type: ActionTypes.addnew,
+    type: "ADD_NEW",
   };
 };
-/**
- *
- * @param {*} data
- * @returns
- */
 export const saveNew = (data) => {
   return {
     type: "SAVE_NEW",
     payload: {
-      id: Math.random().toString(),
+      id: new Date().getTime().toString(),
       data: data,
     },
   };
