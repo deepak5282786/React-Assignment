@@ -4,7 +4,6 @@ import { Button } from "./Button";
 import { useSelector } from "react-redux";
 export const AsideContent = () => {
   const list = useSelector((state) => state.reducerNew.list);
-  const status = "show";
   return (
     <>
       {/* /////--------Card Filtering Component---------///////////////////// */}
