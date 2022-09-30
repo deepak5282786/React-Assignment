@@ -9,6 +9,17 @@ const reducerNew = (state = initialData, action) => {
         ...state,
         list: [...state.list, { id: id, data: data }],
       };
+    case "DELETE_NEW":
+      const newList = state.list.filter((elem) => elem.id !== action.id);
+      return {
+        ...state,
+        list: newList,
+      };
+    case "DELETE_ALL":
+      return {
+        ...state,
+        list: [],
+      };
 
     default:
       return state;

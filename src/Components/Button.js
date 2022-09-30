@@ -1,4 +1,10 @@
 import React from "react";
+/**
+ * this custom button file
+ * @param {buttons propertise} props buttton props
+ * @returns button jsx element
+ * @des 
+ */
 export const Button = (props) => {
   return (
     <>

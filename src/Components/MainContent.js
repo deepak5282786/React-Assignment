@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import "../App.css";
 import { day, month, year, monthName } from "./CurrentDate";
 import { Button } from "./Button";
-import { addNew, saveNew, deleteNew } from "../actions/index";
+import { addNew, saveNew, deleteNew, deleteAll } from "../actions/index";
 import { CommonStrings } from "./actionTypes";
 
 export const MainContent = () => {
@@ -11,6 +11,9 @@ export const MainContent = () => {
   const [inputTitle, setInputTitle] = useState("");
   const [inputDesc, setInputDesc] = useState("");
   const dispatch = useDispatch();
+  /**
+   * decs: this function creates new cards on listings
+   */
   const createNewTile = () => {
     const data = {
       name: inputData,
@@ -23,7 +26,34 @@ export const MainContent = () => {
     <>
       <div className="aside2  col-7">
         <div className="d-flex flex-row-reverse m-3">
-          <Button btnName={CommonStrings.delete} />
+          {/* <Button btnName={CommonStrings.delete} /> */}
+          <div className="p-2">
+            <button
+              type="button"
+              className="btn btn-primary "
+              onClick={() =>
+                dispatch(
+                  deleteAll(),
+                  setInputData(""),
+                  setInputTitle(""),
+                  setInputDesc("")
+                )
+              }
+            >
+              Delete All
+            </button>
+            <Button
+              btnName={CommonStrings.delete}
+              clickSave={() =>
+                dispatch(
+                  deleteAll(),
+                  setInputData(""),
+                  setInputTitle(""),
+                  setInputDesc("")
+                )
+              }
+            />
+          </div>
           <Button
             btnName={CommonStrings.save}
             clickSave={() => {
@@ -34,10 +64,7 @@ export const MainContent = () => {
             }}
           />
 
-          <Button
-            btnName={CommonStrings.new}
-            // clickSave={() => dispatch(saveNew(inputTitle), setInputTitle(""))}
-          />
+          <Button btnName={CommonStrings.new} />
         </div>
         <form className="formic">
           <div className="form-group">

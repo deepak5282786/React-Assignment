@@ -12,8 +12,14 @@ export const saveNew = (data) => {
     },
   };
 };
-export const deleteNew = () => {
+export const deleteNew = (id) => {
   return {
     type: "DELETE_NEW",
+    id,
+  };
+};
+export const deleteAll = () => {
+  return {
+    type: "DELETE_ALL",
   };
 };
