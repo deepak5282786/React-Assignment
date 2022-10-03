@@ -3,7 +3,7 @@ import React from "react";
  * this custom button file
  * @param {buttons propertise} props buttton props
  * @returns button jsx element
- * @des 
+ * @desc this is button component used for returning different name of button and handle event on clicking
  */
 export const Button = (props) => {
   return (

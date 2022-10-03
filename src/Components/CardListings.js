@@ -12,7 +12,7 @@ export default function CardListings() {
   return (
     <>
       {list.map((elem) => {
-        console.log(elem);
+        // console.log(elem);
         return (
           <div
             className="card text-black bg-light mb-3"

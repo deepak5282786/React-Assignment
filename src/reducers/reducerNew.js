@@ -5,10 +5,13 @@ const reducerNew = (state = initialData, action) => {
   switch (action.type) {
     case "SAVE_NEW":
       const { id, data } = action.payload;
-      return {
-        ...state,
-        list: [...state.list, { id: id, data: data }],
-      };
+      if (data.name && data.title && data.describe) {
+        return {
+          ...state,
+          list: [...state.list, { id: id, data: data }],
+        };
+      }
+
     case "DELETE_NEW":
       const newList = state.list.filter((elem) => elem.id !== action.id);
       return {

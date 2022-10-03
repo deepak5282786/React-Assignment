@@ -1,51 +1,23 @@
 import React from "react";
 import "../App.css";
-import { Button } from "./Button";
+import { Dropdown } from "../Common-Component/Dropdown";
+import { Input } from "../Common-Component/Input";
+import { commonPlaceholder } from "../Common-Component/placeholder";
+import { Button } from "../Common-Component/Button";
 import CardListings from "./CardListings";
+import { CommonStrings } from "./buttonName";
 
 export const AsideContent = () => {
   return (
     <>
-      {/* /////--------Card Filtering Component---------///////////////////// */}
       <div className="aside1 col-5 scroll">
-        <div className="form-groups  box">
-          <input
-            type="text"
-            className="form-control"
-            id="formGroupExampleInput"
-            placeholder="Enter Name Or Title for Search"
-          />
+        <div className="box">
+          <Input inputPlaceholder={commonPlaceholder.searchNameTitle} />
         </div>
-        <div className="dropdown mt-3 box">
-          <button
-            className="btn btn-light dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton1"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Search By Dropdown
-          </button>
-          <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li>
-              <a className="dropdown-item" href="#">
-                Search by Date
-              </a>
-            </li>
-            <li>
-              <a className="dropdown-item" href="#">
-                Search by Name
-              </a>
-            </li>
-            <li>
-              <a className="dropdown-item" href="#">
-                Search by Title
-              </a>
-            </li>
-          </ul>
+        <div className=" mt-3 box">
+          <Dropdown />
         </div>
-        <Button btnName="Filter" />
-        {/* ///--------Card Component--------////// */}
+        <Button btnName={CommonStrings.filter} />
         <CardListings />
       </div>
     </>

@@ -1,18 +1,25 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "../App.css";
-import { day, month, year, monthName } from "./CurrentDate";
-import { Button } from "./Button";
-import { addNew, saveNew, deleteNew, deleteAll } from "../actions/index";
-import { CommonStrings } from "./actionTypes";
+import { Button } from "../Common-Component/Button";
+import { addNew, saveNew, deleteAll } from "../actions/index";
+import { CommonStrings } from "./buttonName";
+import { commonPlaceholder } from "../Common-Component/placeholder";
+import { Input } from "../Common-Component/Input";
+import { TextArea } from "../Common-Component/TextArea";
 
+/**
+ *
+ * @returns mainContent inlcudes buttton (New,Saved,Delete All) and the Form which contains input that we enter (name,title,Description) and one readOnly input box Containing today date
+ */
 export const MainContent = () => {
   const [inputData, setInputData] = useState("");
   const [inputTitle, setInputTitle] = useState("");
   const [inputDesc, setInputDesc] = useState("");
+  const [error, setError] = useState("false");
   const dispatch = useDispatch();
   /**
-   * decs: this function creates new cards on listings
+   * @desc: this function is used for taking input and dispaching saveNew Action creator which is taking data and sending as payload in action folder
    */
   const createNewTile = () => {
     const data = {
@@ -22,38 +29,67 @@ export const MainContent = () => {
     };
     dispatch(saveNew(data));
   };
+
+  /**
+   *
+   * @param {inputname Event} e
+   * @desc this used to change the value of input box name on onChange event and validate it using if block
+   */
+  function handleName(e) {
+    const item = e.target.value;
+    setInputData(item);
+    if (item.length < 3) {
+      setError(true);
+    } else {
+      setError(false);
+    }
+  }
+  /**
+   *
+   * @param {inputTitle Event} e
+   * @desc this used to change the value of input box title on onChange event and validate it using if block
+   */
+  function handleTitle(e) {
+    const item = e.target.value;
+    setInputTitle(item);
+    if (item.length < 3) {
+      setError(true);
+    } else {
+      setError(false);
+    }
+  }
+  /**
+   *
+   * @param {inputDesc Event} e
+   * @desc this used to change the value of text area box  on onChange event and validate it using if block
+   */
+  function handlerDesc(e) {
+    const item = e.target.value;
+
+    setInputDesc(item);
+    if (item.length < 3) {
+      setError(true);
+    } else {
+      setError(false);
+    }
+  }
+
   return (
     <>
       <div className="aside2  col-7">
         <div className="d-flex flex-row-reverse m-3">
-          {/* <Button btnName={CommonStrings.delete} /> */}
-          <div className="p-2">
-            <button
-              type="button"
-              className="btn btn-primary "
-              onClick={() =>
-                dispatch(
-                  deleteAll(),
-                  setInputData(""),
-                  setInputTitle(""),
-                  setInputDesc("")
-                )
-              }
-            >
-              Delete All
-            </button>
-            <Button
-              btnName={CommonStrings.delete}
-              clickSave={() =>
-                dispatch(
-                  deleteAll(),
-                  setInputData(""),
-                  setInputTitle(""),
-                  setInputDesc("")
-                )
-              }
-            />
-          </div>
+          <Button
+            btnName={CommonStrings.delete}
+            clickSave={() =>
+              dispatch(
+                deleteAll(),
+                setInputData(""),
+                setInputTitle(""),
+                setInputDesc("")
+              )
+            }
+          />
+
           <Button
             btnName={CommonStrings.save}
             clickSave={() => {
@@ -67,46 +103,38 @@ export const MainContent = () => {
           <Button btnName={CommonStrings.new} />
         </div>
         <form className="formic">
-          <div className="form-group">
-            <input
-              disabled
-              className="form-control"
-              type="text"
-              placeholder={`Created On: ${monthName[month]} ${day}, ${year} (ReadOnly)`}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              id="formGroupExampleInput"
-              placeholder="Enter Name"
-              value={inputData}
-              onChange={(e) => setInputData(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              id="formGroupExampleInput2"
-              placeholder="Enter Title"
-              value={inputTitle}
-              onChange={(e) => setInputTitle(e.target.value)}
-            />
-          </div>
-          <div className="form-outline mb-4 form-group">
-            <textarea
-              className="form-control"
-              id="form4Example3"
-              rows="8"
-              placeholder="Enter Something Here!"
-              value={inputDesc}
-              onChange={(e) => setInputDesc(e.target.value)}
-            ></textarea>
-          </div>
+          <Input
+            disable={true}
+            inputPlaceholder={commonPlaceholder.readonlyPlaceholder}
+          />
+
+          <Input
+            inputPlaceholder={commonPlaceholder.namePlaceholder}
+            inputValue={inputData}
+            inputChange={handleName}
+          />
+
+          <Input
+            inputPlaceholder={commonPlaceholder.titlePlaceholder}
+            inputValue={inputTitle}
+            inputChange={handleTitle}
+          />
+
+          <TextArea
+            inputPlaceholder={commonPlaceholder.descPlaceholder}
+            inputValue={inputDesc}
+            inputChange={handlerDesc}
+          />
         </form>
       </div>
     </>
   );
 };
+
+// {error === true ? (
+//   <p style={{ color: "red", marginTop: "3px", fontWeight: "bold" }}>
+//     Invalid Title
+//   </p>
+// ) : (
+//   ""
+// )}

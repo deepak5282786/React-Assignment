@@ -1,5 +1,6 @@
 export const CommonStrings = {
-  delete: "Deleted",
+  delete: "Delete All",
   save: "Saved",
   new: "New",
+  filter: "Filter",
 };
