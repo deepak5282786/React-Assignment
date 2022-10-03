@@ -1,9 +1,9 @@
 // import { day, month, year, monthName } from "../Components/CurrentDate";
-import { fullDate } from "../Components/CurrentDate";
+import { fullDate } from "./CurrentDate";
 export const commonPlaceholder = {
   readonlyPlaceholder: `Created On: ${fullDate.monthName[fullDate.month]} ${
     fullDate.day
-  }, ${fullDate.year} (ReadOnlyobject)`,
+  }, ${fullDate.year} (ReadOnly)`,
   namePlaceholder: "Enter Name",
   titlePlaceholder: "Enter Title",
   descPlaceholder: "Enter Something Here!",

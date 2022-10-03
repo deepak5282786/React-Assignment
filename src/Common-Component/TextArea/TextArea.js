@@ -1,5 +1,10 @@
 import React from "react";
-
+/**
+ *
+ * @param {input} props (placeholder,inputValue,onchange event)
+ * @returns jsx of text area
+ * @desc this is textarea function which takes input value and set input value on change and also takes hardCoded input value as props
+ */
 export const TextArea = (props) => {
   return (
     <>

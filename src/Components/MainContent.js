@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "../App.css";
-import { Button } from "../Common-Component/Button";
+import { Button } from "../Common-Component/Button/Button";
 import { addNew, saveNew, deleteAll } from "../actions/index";
-import { CommonStrings } from "./buttonName";
-import { commonPlaceholder } from "../Common-Component/placeholder";
-import { Input } from "../Common-Component/Input";
-import { TextArea } from "../Common-Component/TextArea";
+import { CommonStrings } from "../Common-Component/Button/buttonName";
+import { commonPlaceholder } from "../Common-Component/InputBox/placeholder";
+import { Input } from "../Common-Component/InputBox/Input";
+import { TextArea } from "../Common-Component/TextArea/TextArea";
 
 /**
  *
@@ -94,9 +94,9 @@ export const MainContent = () => {
             btnName={CommonStrings.save}
             clickSave={() => {
               createNewTile();
+              setInputData("");
               setInputTitle("");
               setInputDesc("");
-              setInputData("");
             }}
           />
 

@@ -1,18 +1,17 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteNew } from "../actions/index";
+import { deleteNew } from "../../actions/index";
 /**
- * @param
- * @returns card listing
- * @desc
+ * @returns card listing by extracting value of name,tittle,description and which contains delere button to delete indivisual items
  */
 export default function CardListings() {
   const list = useSelector((state) => state.reducerNew.list);
   const dispatch = useDispatch();
   return (
     <>
+      console.log(list);
       {list.map((elem) => {
-        // console.log(elem);
+        console.log("elme", elem);
         return (
           <div
             className="card text-black bg-light mb-3"
