@@ -16,7 +16,7 @@ export const TextArea = (props) => {
           placeholder={props.inputPlaceholder}
           value={props.inputValue}
           onChange={props.inputChange}
-        ></textarea>
+        />
       </div>
     </>
   );

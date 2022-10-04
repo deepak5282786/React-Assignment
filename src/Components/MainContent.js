@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "../App.css";
-import { Button } from "../Common-Component/Button/Button";
+import { Button } from "../Common/Button/Button";
 import { addNew, saveNew, deleteAll } from "../actions/index";
-import { CommonStrings } from "../Common-Component/Button/buttonName";
-import { commonPlaceholder } from "../Common-Component/InputBox/placeholder";
-import { Input } from "../Common-Component/InputBox/Input";
-import { TextArea } from "../Common-Component/TextArea/TextArea";
+import { CommonStrings } from "../Common/Utils/buttonUtils";
+import { commonPlaceholder } from "../Common/Utils/placeholder";
+import { Input } from "../Common/InputBox/Input";
+import { TextArea } from "../Common/TextArea/TextArea";
 
 /**
  *
@@ -16,11 +16,14 @@ export const MainContent = () => {
   const [inputData, setInputData] = useState("");
   const [inputTitle, setInputTitle] = useState("");
   const [inputDesc, setInputDesc] = useState("");
-  const [error, setError] = useState("false");
+  const [nameErr, setNameErr] = useState(false);
+  const [titleErr, setTitleErr] = useState(false);
+  const [descErr, setDescErr] = useState(false);
   const dispatch = useDispatch();
   /**
    * @desc: this function is used for taking input and dispaching saveNew Action creator which is taking data and sending as payload in action folder
    */
+
   const createNewTile = () => {
     const data = {
       name: inputData,
@@ -29,6 +32,44 @@ export const MainContent = () => {
     };
     dispatch(saveNew(data));
   };
+  function loginHandle(e) {
+    if (
+      inputData.length <= 0 ||
+      inputTitle.length <= 0 ||
+      inputDesc.length <= 0
+    ) {
+      // alert("type correct values");
+      setNameErr(true);
+      setTitleErr(true);
+      setDescErr(true);
+    } else {
+      // alert("all good :)");
+      setNameErr(false);
+      setTitleErr(false);
+      setDescErr(false);
+    }
+
+    e.preventDefault();
+  }
+  function newHandle(e) {
+    if (
+      inputData.length >= 0 ||
+      inputTitle.length >= 0 ||
+      inputDesc.length >= 0
+    ) {
+      // alert("type correct values");
+      setNameErr(true);
+      setTitleErr(true);
+      setDescErr(true);
+    } else {
+      // alert("all good :)");
+      setNameErr(false);
+      setTitleErr(false);
+      setDescErr(false);
+    }
+
+    e.preventDefault();
+  }
 
   /**
    *
@@ -37,12 +78,13 @@ export const MainContent = () => {
    */
   function handleName(e) {
     const item = e.target.value;
-    setInputData(item);
-    if (item.length < 3) {
-      setError(true);
+    console.log(item.length);
+    if (item.length <= 5) {
+      setNameErr(true);
     } else {
-      setError(false);
+      setNameErr(false);
     }
+    setInputData(item);
   }
   /**
    *
@@ -51,12 +93,12 @@ export const MainContent = () => {
    */
   function handleTitle(e) {
     const item = e.target.value;
-    setInputTitle(item);
-    if (item.length < 3) {
-      setError(true);
+    if (item.length <= 10) {
+      setTitleErr(true);
     } else {
-      setError(false);
+      setTitleErr(false);
     }
+    setInputTitle(item);
   }
   /**
    *
@@ -66,12 +108,12 @@ export const MainContent = () => {
   function handlerDesc(e) {
     const item = e.target.value;
 
-    setInputDesc(item);
-    if (item.length < 3) {
-      setError(true);
+    if (item.length <= 20) {
+      setDescErr(true);
     } else {
-      setError(false);
+      setDescErr(false);
     }
+    setInputDesc(item);
   }
 
   return (
@@ -97,44 +139,75 @@ export const MainContent = () => {
               setInputData("");
               setInputTitle("");
               setInputDesc("");
+              loginHandle();
             }}
           />
 
-          <Button btnName={CommonStrings.new} />
+          <Button
+            btnName={CommonStrings.new}
+            clickSave={() => {
+              // createNewTile();
+              setInputData("");
+              setInputTitle("");
+              setInputDesc("");
+              newHandle();
+            }}
+          />
         </div>
         <form className="formic">
           <Input
             disable={true}
             inputPlaceholder={commonPlaceholder.readonlyPlaceholder}
           />
-
           <Input
             inputPlaceholder={commonPlaceholder.namePlaceholder}
             inputValue={inputData}
             inputChange={handleName}
           />
+          <div className="form-group">
+            {nameErr === true ? (
+              <p style={{ color: "red", fontWeight: "bold" }}>Invalid name</p>
+            ) : (
+              ""
+            )}
+          </div>
 
           <Input
             inputPlaceholder={commonPlaceholder.titlePlaceholder}
             inputValue={inputTitle}
             inputChange={handleTitle}
           />
+          <div className="form-group">
+            {titleErr === true ? (
+              <span
+                style={{
+                  color: "red",
+                  fontWeight: "bold",
+                }}
+              >
+                Invalid Title
+              </span>
+            ) : (
+              ""
+            )}
+          </div>
 
           <TextArea
             inputPlaceholder={commonPlaceholder.descPlaceholder}
             inputValue={inputDesc}
             inputChange={handlerDesc}
           />
+          <div className="form-group">
+            {descErr === true ? (
+              <p style={{ color: "red", fontWeight: "bold" }}>
+                Invalid Description
+              </p>
+            ) : (
+              ""
+            )}
+          </div>
         </form>
       </div>
     </>
   );
 };
-
-// {error === true ? (
-//   <p style={{ color: "red", marginTop: "3px", fontWeight: "bold" }}>
-//     Invalid Title
-//   </p>
-// ) : (
-//   ""
-// )}

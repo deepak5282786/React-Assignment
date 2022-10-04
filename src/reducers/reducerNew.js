@@ -13,13 +13,16 @@ const reducerNew = (state = initialData, action) => {
   switch (action.type) {
     case "SAVE_NEW":
       const { id, data } = action.payload;
-      if (data.name && data.title && data.describe) {
+      if (
+        data.name.length >= 5 &&
+        data.title.length >= 10 &&
+        data.describe.length >= 20
+      ) {
         return {
           ...state,
           list: [...state.list, { id: id, data: data }],
         };
       }
-
     case "DELETE_NEW":
       const newList = state.list.filter((elem) => elem.id !== action.id);
       return {
@@ -31,7 +34,6 @@ const reducerNew = (state = initialData, action) => {
         ...state,
         list: [],
       };
-
     default:
       return state;
   }

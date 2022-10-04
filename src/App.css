@@ -8,12 +8,17 @@ body {
   justify-content: flex-end;
 }
 .aside1 {
-  border-right: 2px solid red;
+  /* border-right: 2px solid red; */
   height: 100vh;
   padding: 30px;
+  /* margin-top: 80px; */
+}
+.scrollBar {
+  margin-top: 90px;
 }
 .box {
   margin-bottom: 30px;
+  /* margin-top: 80px; */
 }
 .aside2 {
   /* border: 2px solid blue; */
@@ -36,7 +41,6 @@ body {
 .scroll {
   margin: 4px, 4px;
   padding: 4px;
-  /* background-color: green; */
   width: 500px;
   height: 100vh;
   overflow-x: hidden;

@@ -9,16 +9,14 @@ export default function CardListings() {
   const dispatch = useDispatch();
   return (
     <>
-      console.log(list);
       {list.map((elem) => {
-        console.log("elme", elem);
         return (
           <div
             className="card text-black bg-light mb-3"
             style={{
               maxWidth: "18rem",
             }}
-            key={new Date().getTime().toString()}
+            key={elem.id}
           >
             <>
               <div className="card-header">

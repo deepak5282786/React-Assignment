@@ -1,6 +1,6 @@
 import React from "react";
 import "../../App.css";
-import { CommonStrings } from "../Button/buttonName";
+import { CommonStrings } from "../Utils/buttonUtils";
 import { DropdownButton } from "./DropdownButton";
 import { DropdownList } from "./DropdownList";
 /**
