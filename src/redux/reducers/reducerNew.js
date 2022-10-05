@@ -34,6 +34,15 @@ const reducerNew = (state = initialData, action) => {
         ...state,
         list: [],
       };
+    case "FILTER_DATA":
+      const { value } = action.payload;
+      const filteredCard = state.list.filter(
+        (elem) => (elem.data.name || elem.data.title) === value
+      );
+      return {
+        ...state,
+        list: filteredCard,
+      };
     default:
       return state;
   }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "../App.css";
 import { Button } from "../Common/Button/Button";
-import { addNew, saveNew, deleteAll } from "../actions/index";
+import { addNew, saveNew, deleteAll } from "../redux/actions/index";
 import { CommonStrings } from "../Common/Utils/buttonUtils";
 import { commonPlaceholder } from "../Common/Utils/placeholder";
 import { Input } from "../Common/InputBox/Input";
@@ -78,7 +78,7 @@ export const MainContent = () => {
    */
   function handleName(e) {
     const item = e.target.value;
-    console.log(item.length);
+    // console.log(item.length);
     if (item.length <= 5) {
       setNameErr(true);
     } else {
