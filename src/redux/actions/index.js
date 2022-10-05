@@ -23,11 +23,19 @@ export const deleteAll = () => {
     type: "DELETE_ALL",
   };
 };
-export const filterData = (value) => {
-  return {
-    type: "FILTER_DATA",
-    payload: {
-      value: value,
-    },
-  };
-};
+// export const filterDataName = (value) => {
+//   return {
+//     type: "FILTER_DATA_NAME",
+//     payload: {
+//       value: value,
+//     },
+//   };
+// };
+// export const filterDataTitle = (valueTitle) => {
+//   return {
+//     type: "FILTER_DATA_TITLE",
+//     payload: {
+//       valueTitle: valueTitle,
+//     },
+//   };
+// };

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "../../App.css";
-import { Dropdown } from "../../Common/Dropdown/Dropdown";
+// import { Dropdown } from "../../Common/Dropdown/Dropdown";
 import { Input } from "../../Common/InputBox/Input";
 import { commonPlaceholder } from "../../Common/Utils/placeholder";
 import { Button } from "../../Common/Button/Button";
 import CardListings from "./CardListings";
 import { CommonStrings } from "../../Common/Utils/buttonUtils";
-import { useDispatch } from "react-redux";
-import { filterData } from "../../redux/actions/index";
+// import { useDispatch } from "react-redux";
+// import { filterDataName, filterDataTitle } from "../../redux/actions/index";
 
 /**
  *
@@ -15,7 +15,7 @@ import { filterData } from "../../redux/actions/index";
  */
 export const AsideContent = () => {
   const [filterInputData, setFilterInputData] = useState("");
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const handleFilterInput = (e) => {
     setFilterInputData(e.target.value);
   };
@@ -30,13 +30,42 @@ export const AsideContent = () => {
               inputChange={handleFilterInput}
             />
           </div>
-          <div className=" mt-3 box">
+          {/* <div className=" mt-3 box">
             <Dropdown />
-          </div>
-          <Button
+          </div> */}
+          {/* <div className="dropdown">
+            <button
+              className="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Dropdown button
+            </button>
+            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a className="dropdown-item" href="#">
+                Action
+              </a>
+              <a className="dropdown-item" href="#">
+                Another action
+              </a>
+              <a className="dropdown-item" href="#">
+                Something else here
+              </a>
+            </div>
+          </div> */}
+
+          <Button btnName={CommonStrings.filter} />
+          {/* <Button
             btnName={CommonStrings.filter}
-            clickSave={() => dispatch(filterData(filterInputData))}
-          />
+            clickSave={() => dispatch(filterDataName(filterInputData))}
+          /> */}
+          {/* <Button
+            btnName={CommonStrings.filter}
+            clickSave={() => dispatch(filterDataTitle(filterInputData))}
+          /> */}
 
           <CardListings />
         </div>

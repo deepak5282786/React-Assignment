@@ -34,15 +34,25 @@ const reducerNew = (state = initialData, action) => {
         ...state,
         list: [],
       };
-    case "FILTER_DATA":
-      const { value } = action.payload;
-      const filteredCard = state.list.filter(
-        (elem) => (elem.data.name || elem.data.title) === value
-      );
-      return {
-        ...state,
-        list: filteredCard,
-      };
+    // case "FILTER_DATA_NAME":
+    //   const { value } = action.payload;
+    //   const filteredCard = state.list.find(value);
+    //   // const filteredCard = state.list.filter(
+    //   //   (elem) => elem.data.title === value
+    //   // );
+    //   return {
+    //     ...state,
+    //     list: filteredCard,
+    //   };
+    // case "FILTER_DATA_TITLE":
+    //   const { valueTitle } = action.payload;
+    //   const filteredCardTitle = state.list.filter(
+    //     (elem) => elem.data.title === valueTitle
+    //   );
+    //   return {
+    //     ...state,
+    //     list: filteredCardTitle,
+    //   };
     default:
       return state;
   }

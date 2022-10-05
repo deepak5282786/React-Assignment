@@ -49,7 +49,7 @@ export const MainContent = () => {
       setDescErr(false);
     }
 
-    e.preventDefault();
+    // e.preventDefault();
   }
   function newHandle(e) {
     if (
