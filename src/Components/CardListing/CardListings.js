@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { deleteNew } from "../../redux/actions";
 /**
  * @returns card listing by extracting value of name,tittle,description and which contains delere button to delete indivisual items

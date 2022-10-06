@@ -16,6 +16,7 @@ export const Input = (props) => {
           value={props.inputValue}
           onChange={props.inputChange}
           placeholder={props.inputPlaceholder}
+          onClick={props.inputOnClick}
         />
       </div>
     </>
