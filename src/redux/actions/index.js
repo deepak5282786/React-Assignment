@@ -1,41 +1,22 @@
-export const addNew = () => {
+import { SAVE, DELETE_CARD, DELETE_ALL } from "./actionTypes";
+
+export const save = (data) => {
   return {
-    type: "ADD_NEW",
-  };
-};
-export const saveNew = (data) => {
-  return {
-    type: "SAVE_NEW",
+    type: SAVE,
     payload: {
       id: new Date().getTime().toString(),
       data: data,
     },
   };
 };
-export const deleteNew = (id) => {
+export const deleteCard = (id) => {
   return {
-    type: "DELETE_NEW",
+    type: DELETE_CARD,
     id,
   };
 };
 export const deleteAll = () => {
   return {
-    type: "DELETE_ALL",
+    type: DELETE_ALL,
   };
 };
-// export const filterDataName = (value) => {
-//   return {
-//     type: "FILTER_DATA_NAME",
-//     payload: {
-//       value: value,
-//     },
-//   };
-// };
-// export const filterDataTitle = (valueTitle) => {
-//   return {
-//     type: "FILTER_DATA_TITLE",
-//     payload: {
-//       valueTitle: valueTitle,
-//     },
-//   };
-// };

@@ -1,4 +1,5 @@
 import React from "react";
+import { rows } from "./textAreaUtils";
 /**
  *
  * @param {input} props (placeholder,inputValue,onchange event)
@@ -8,11 +9,10 @@ import React from "react";
 export const TextArea = (props) => {
   return (
     <>
-      <div className="form-outline mb-4 form-group">
+      <div className="form-outline mb-4 form-group main-inputBox">
         <textarea
           className="form-control"
-          id="form4Example3"
-          rows="8"
+          rows={rows.row}
           placeholder={props.inputPlaceholder}
           value={props.inputValue}
           onChange={props.inputChange}

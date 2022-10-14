@@ -1,49 +1,83 @@
+/* ///////Design for Destop Screen------- */
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 .main-div {
+  width: 100%;
+  height: 100%;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: row-reverse;
+  justify-content: center;
 }
+/*------- ASIDE-COMPONENT------- */
 .aside1 {
-  /* border-right: 2px solid red; */
-  height: 100vh;
-  padding: 30px;
-  /* margin-top: 80px; */
-}
-.scrollBar {
-  margin-top: 90px;
-}
-.box {
-  margin-bottom: 30px;
-  /* margin-top: 80px; */
-}
-.aside2 {
-  /* border: 2px solid blue; */
-  height: 100vh;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  padding-top: 85px;
 }
 
-.formic {
+.aside1-main {
+  width: 80%;
+}
+.aside-box {
+  margin-bottom: 2rem;
+}
+.dropdownMenu {
+  margin-bottom: 2rem;
+}
+.select-dropdown {
+  width: 100%;
+}
+
+/* -----MAIN-CONTENT -------*/
+.aside2 {
+  width: 60%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
 }
-.form-group {
-  width: 70%;
-  margin-top: 10px;
+
+.aside2-main {
+  width: 90%;
 }
-.form-groups {
-  margin-top: 65px;
+.main-inputBox {
+  margin-bottom: 2rem;
 }
-.scroll {
-  margin: 4px, 4px;
-  padding: 4px;
-  width: 500px;
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
-  text-align: justify;
+.card-body .card-title,
+.card-header h5,
+.card-text {
+  font-size: 1.1rem;
+}
+
+/* //=======meadia queries for screen 768px to 1200px-------- */
+@media (min-width: 768px) and (max-width: 1200px) {
+  .card-body .card-title,
+  .card-header h5,
+  .card-text {
+    font-size: 1rem;
+  }
+}
+
+/* //=======meadia queries for screen less than 768px -------- */
+@media (max-width: 767px) {
+  .card-body .card-title,
+  .card-header h5,
+  .card-text {
+    font-size: 0.9rem;
+  }
+  .main-div {
+    width: 100%;
+    flex-direction: column;
+  }
+  .aside2 {
+    width: 100%;
+  }
+  .aside1 {
+    width: 100%;
+  }
+  .aside1-main {
+    width: 60%;
+  }
 }

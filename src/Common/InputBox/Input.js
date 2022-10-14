@@ -8,7 +8,7 @@ import "../../App.css";
 export const Input = (props) => {
   return (
     <>
-      <div className="form-group">
+      <div className="form-group main-inputBox">
         <input
           disabled={props.disable}
           className="form-control"
@@ -17,6 +17,7 @@ export const Input = (props) => {
           onChange={props.inputChange}
           placeholder={props.inputPlaceholder}
           onClick={props.inputOnClick}
+          required={props.required}
         />
       </div>
     </>

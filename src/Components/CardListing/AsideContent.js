@@ -1,145 +1,110 @@
 import React, { useEffect, useState } from "react";
 import "../../App.css";
-// import { Dropdown } from "../../Common/Dropdown/Dropdown";
 import { Input } from "../../Common/InputBox/Input";
-import { commonPlaceholder } from "../../Common/Utils/placeholder";
-import { Button } from "../../Common/Button/Button";
 import CardListings from "./CardListings";
-import { CommonStrings } from "../../Common/Utils/buttonUtils";
 import { useSelector } from "react-redux";
+import { Select } from "../../Common/Dropdown/Select";
+import { dropdownError, getInputValue, getPlaceholder } from "./CardUtils";
+import { optionValue } from "../../Common/Utils/OptionValue";
 
 /**
  *
  * @returns AsideContent Is Function return Aside Component Which Contains SearchBar For Filtering And Search button and Cardlisting Component
  */
-export const AsideContent = () => {
+export function AsideContent() {
   const list = useSelector((state) => state.reducerNew.list);
   const [filteredList, setFilteredList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectDropdown, setSelectDropdown] = useState("");
+  const [selectDropdown, setSelectDropdown] = useState(optionValue.none);
   const [nameTitleErr, setNameTitleErr] = useState(false);
-  const [searchTermErr, setSearchTermErr] = useState(false);
-  const optionValue = {
-    userName: "userName",
-    title: "title",
-    desc: "desc",
-  };
+  /**
+   *
+   * @param {e} e value of e is enter by user in filter input box
+   * @Desc this function takes value of e and set searchTerm so that it can change on every input and on every input change call function onChange
+   */
   const handleSearchTerm = (e) => {
     const item = e.target.value;
     setSearchTerm(item);
     onChange(item);
-    if (item.length <= 5) {
-      setSearchTermErr(true);
-    } else {
-      setSearchTermErr(false);
-    }
-    setSearchTerm(item);
   };
-
-  useEffect(() => {
-    setFilteredList(list);
-    return () => {
-      setFilteredList([]);
-    };
-  }, [list]);
-
+  /**
+   *
+   * @param {fieldName} fieldName it hold value of item which is passed in onChange(item) function
+   */
   const onChange = (fieldName) => {
+    /**
+     * @Desc it set value of filtered list if the fieldname is empty or null
+     */
     if (fieldName === "" || fieldName === null) {
       setFilteredList(list);
     }
+    /**
+     * @Desc return filtered list by  dropdown and After returning set filtered list to whatever it return
+     */
     const indexes = list.filter((item, i) => {
       return getInputValue(selectDropdown, item, fieldName);
     });
     setFilteredList(indexes);
   };
 
-  const getInputValue = (selected, item, value) => {
-    switch (selected) {
-      case "userName":
-        return item.data.name.toLowerCase().indexOf(value.toLowerCase()) !== -1;
-      case "title":
-        return (
-          item.data.title.toLowerCase().indexOf(value.toLowerCase()) !== -1
-        );
-      default:
-        break;
-    }
-  };
-
+  /**
+   *
+   * @param {e} e value of e is enter by user by selecting dropdown
+   */
   const handleSelectDropdown = (e) => {
     setSelectDropdown(e.target.value);
   };
-  function onClickHandleSearch(e) {
-    if (searchTerm.length <= 0) {
+
+  /**
+   * @Desc function is used to show validation error in dropdown by onclicking of input filter box
+   */
+  function onClickHandleSearch() {
+    /**
+     *@Desc  show Error on clicking on the filter input box when searchTerm is empty else do not show any error
+     */
+    if (searchTerm === "") {
       setNameTitleErr(true);
     } else {
       setNameTitleErr(false);
     }
-    setSearchTerm(e.target.value);
-
-    e.preventDefault();
   }
+  /**
+   * @Desc on changing every value on list run this useffect
+   */
+  useEffect(() => {
+    /**
+     *@@Desc  set filtered list to list when it is in effect
+     */
+    setFilteredList(list);
+    return () => {
+      /**
+       *@Desc  set filtered  list to [] when we change the page
+       */
+      setFilteredList([]);
+    };
+  }, [list]);
   return (
     <>
       <div className="aside1 col-5 scroll">
-        <div className="scrollBar">
-          <div className="box">
+        <div className="aside1-main scrollBar">
+          <Select
+            value={selectDropdown}
+            onChange={handleSelectDropdown}
+            className="dropdownMenu"
+          />
+          {dropdownError(nameTitleErr)}
+          <div className="aside-box">
             <Input
-              inputPlaceholder={commonPlaceholder.searchNameTitle}
+              inputPlaceholder={getPlaceholder(selectDropdown)}
               inputValue={searchTerm}
-              inputChange={(text) => handleSearchTerm(text)}
-              inputOnClick={() => {
-                onClickHandleSearch();
-              }}
+              inputChange={handleSearchTerm}
+              inputOnClick={() => onClickHandleSearch()}
             />
           </div>
-          {searchTermErr === true ? (
-            <p style={{ color: "red", fontWeight: "bold" }}>
-              Invalid must be more than 5
-            </p>
-          ) : (
-            ""
-          )}
 
-          {/* <div className=" mt-3 box">
-            <Dropdown />
-          </div> */}
-          <div className="mb-4">
-            <select
-              className="btn btn-light dropdown-toggle"
-              name="dog-names"
-              id="dog-names"
-              value={selectDropdown}
-              onChange={handleSelectDropdown}
-            >
-              <option value={optionValue.userName} className="dropdown-item">
-                By UserName
-              </option>
-              <option value={optionValue.title} className="dropdown-item">
-                By Title
-              </option>
-              <option value={optionValue.desc} className="dropdown-item">
-                By Description
-              </option>
-            </select>
-          </div>
-          {nameTitleErr === true ? (
-            <p style={{ color: "red", fontWeight: "bold" }}>
-              Select DropDown List
-            </p>
-          ) : (
-            ""
-          )}
-
-          <Button
-            btnName={CommonStrings.filter}
-            clickSave={() => {
-              onChange(searchTerm);
-            }}
-          />
           <CardListings filteredList={filteredList} />
         </div>
       </div>
     </>
   );
-};
+}

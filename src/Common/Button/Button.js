@@ -13,6 +13,7 @@ export const Button = (props) => {
           type="button"
           className="btn btn-primary"
           onClick={props.clickSave}
+          disabled={props.disabled}
         >
           {props.btnName}
         </button>

@@ -1,3 +1,5 @@
+import { SAVE, DELETE_CARD, DELETE_ALL } from "../actions/actionTypes";
+
 const initialData = {
   list: [],
 };
@@ -11,48 +13,29 @@ const initialData = {
 
 const reducerNew = (state = initialData, action) => {
   switch (action.type) {
-    case "SAVE_NEW":
+    case SAVE:
       const { id, data } = action.payload;
       if (
         data.name.length >= 5 &&
-        data.title.length >= 10 &&
-        data.describe.length >= 20
+        data.title.length >= 5 &&
+        data.describe.length >= 10
       ) {
         return {
           ...state,
           list: [...state.list, { id: id, data: data }],
         };
       }
-    case "DELETE_NEW":
+    case DELETE_CARD:
       const newList = state.list.filter((elem) => elem.id !== action.id);
       return {
         ...state,
         list: newList,
       };
-    case "DELETE_ALL":
+    case DELETE_ALL:
       return {
         ...state,
         list: [],
       };
-    // case "FILTER_DATA_NAME":
-    //   const { value } = action.payload;
-    //   const filteredCard = state.list.find(value);
-    //   // const filteredCard = state.list.filter(
-    //   //   (elem) => elem.data.title === value
-    //   // );
-    //   return {
-    //     ...state,
-    //     list: filteredCard,
-    //   };
-    // case "FILTER_DATA_TITLE":
-    //   const { valueTitle } = action.payload;
-    //   const filteredCardTitle = state.list.filter(
-    //     (elem) => elem.data.title === valueTitle
-    //   );
-    //   return {
-    //     ...state,
-    //     list: filteredCardTitle,
-    //   };
     default:
       return state;
   }
